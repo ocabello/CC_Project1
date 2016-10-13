@@ -19,17 +19,19 @@ function setup() {
 }
 
 function draw() {
-  background(0, 153, 76);
-
-  fill(0);                          
+  background(102, 0, 204); //purple
+  
+  noStroke();
+  fill(160, 160, 160, 100); //gray                          
   ellipse(mouseX, mouseY, 30, 30);  //create main circle
 
 
   x = mouseX;           //main circle will be controlled by mouse location
   y = mouseY;
 
+  push();
   for (var i = 0; i < ellipses.length; i++) {  //retreives all circleGroup objects from the array to call different functions on them
-    fill(0); //black
+    fill(0, 0, random(100)); //change to different shades of blue
     //println(ellipses[i].x);
 
     ellipses[i].create();  
@@ -40,6 +42,7 @@ function draw() {
     ellipses[i].move();
 
   }
+  pop();
 
 
 }
@@ -52,8 +55,8 @@ function circleGroup(locX, locY) {      //circleGroup definition
   var speed = 1;    //reduced speed to 1 to make the sketch bearable to look at
 
   this.move = function() {            //adds motion to circles to make them look more "alive"
-    this.x += random(-speed, speed);
-    this.y += random(-speed, speed);
+    this.x += random(-0.5, 0.5);
+    this.y += random(-0.5, 0.5);
   }
 
   this.create = function() {                //creates circle shape
@@ -78,7 +81,7 @@ function circleGroup(locX, locY) {      //circleGroup definition
     */
 
 
-    if (dis > 30 && dis <= 50) {              //when the distance calculated above is only between 30 and 50,
+    if (dis > 0 && dis <= 50) {              //when the distance calculated above is only between 0 and 50,
       if (x1 < this.x && y1 < this.y) {       //move the current circleGroup object in the opposite direction
         this.x += speed;                      //at a speed of 1
         this.y += speed;
@@ -100,10 +103,18 @@ function circleGroup(locX, locY) {      //circleGroup definition
       } else if (x1 < this.x && y1 == this.y) {
         this.x = speed;
       }
+      
+      push();
+      noFill();
+      stroke(255, 128, 0);
+      translate(x1, y1);
+      scale(1 +sin(frameCount*0.1)*0.15);     //using sin function in scale creates oscillating effect
+      ellipse(0, 0, dis, dis);                //circle surrounding main gray circle (only appears when the distance
+      pop();                                  //is between 0 and 50
 
     }
 
-    else if (dis > 50 && dis < 70) {            //otherwise, if the distance is between 50 and 70,
+    else if (dis > 50 && dis < 60) {            //otherwise, if the distance is between 50 and 60,
       if (x1 < this.x && y1 < this.y) {         //move the current circleGroup object back towards the
         this.x += -speed;                       //initial position at a speed of 1
         this.y += -speed;
