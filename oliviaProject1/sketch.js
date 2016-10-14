@@ -70,15 +70,6 @@ function circleGroup(locX, locY) {      //circleGroup definition
     var dis = int(dist(x1, y1, this.x, this.y));  //calculates the distance between the main circle and the current
     //println(dis);                               //circleGroup object
 
-    /*
-    this.x += dis;
-    this.y += dis;
-   
-    if (dis >= 50) {
-      this.x -= dis;
-      this.y -= dis;
-    }
-    */
 
 
     if (dis > 0 && dis <= 50) {              //when the distance calculated above is only between 0 and 50,
@@ -138,12 +129,6 @@ function circleGroup(locX, locY) {      //circleGroup definition
       }
 
     }
-  }
-
-
-  this.reset = function(locX, locY) {
-    this.x = locX;
-    this.y = locY;
   }
 
 
