@@ -1,7 +1,6 @@
 var x = 0;          //global variables that will be used to control coordinates of main circle
 var y = 0;
 
-var d = 100;        
 
 var ellipses = [];   //array of circles
 
@@ -9,13 +8,13 @@ var ellipses = [];   //array of circles
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //frameRate(5);
-  smooth();
+  //smooth();
 
   for (var i = 0; i < 50; i++) {                                      //initialize array of circles by storing circleGroup
     ellipses.push(new circleGroup(random(width), random(height)));    //object (defined below)
     //  println(ellipses[i]);
   }
-
+  noCursor();                                                        //hides mouse
 }
 
 function draw() {
@@ -37,7 +36,6 @@ function draw() {
     ellipses[i].create();  
     ellipses[i].repel(x, y);
 
-    // ellipses[i].reset(random(width), random(height));
     // println(ellipses[i]);
     ellipses[i].move();
 
